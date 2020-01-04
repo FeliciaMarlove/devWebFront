@@ -18,10 +18,11 @@ let regexadress = /^[a-z0-9\s\-\/]+$/i;
 let bouton = document.getElementById("send");
 let passwordsMatch = (motDePasse.value === motDePasseVerif.value);
 bouton.disabled = true;
-
+const ok = 'V';
+const nok = 'X';
 
 function doShowButton() {
-    if (doCheckEmail() && doCheckName() && doChekcPwd() && doMockupLogin() && doCheckAddress()) {
+    if (doCheckEmail() && doCheckName() && doChekcPwd() && doMockupLogin() && doCheckAddress() && doCheckConditions()) {
         bouton.disabled = false;
     } else {
         bouton.disabled = true;
@@ -29,6 +30,7 @@ function doShowButton() {
 }
 
 function doCheckEmail() {
+    /*if (regexmail.test(email.value) {document.getElementById("stateEmail").innerText = ok;}*/
     return regexmail.test(email.value);
 }
 
@@ -42,6 +44,10 @@ function doChekcPwd() {
 
 function doCheckAddress() {
     return regexadress.test(adresse.value);
+}
+
+function doCheckConditions () {
+    return conditions.checked;
 }
 
 function doMockupLogin() {
