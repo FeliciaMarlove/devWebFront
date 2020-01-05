@@ -13,24 +13,29 @@ let regexmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@(
  /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
  */
 let regexpwd = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/; /*au moins 1 minuscule, 1 majuscule, 1 chifre, 1 caractère spécial, longueur de 8*/
-let regexadress = /^[a-z0-9\s\-\/]+$/i;
+let regexadress = /^[a-z0-9àáâãäåçèéêëìíîïðòóôõöùúûüýÿ\s\-\/]+$/i;
 /*seulement des lettres, des chiffres et espace, - et / autorisés ; i = case insensitive*/
 let bouton = document.getElementById("send");
-let passwordsMatch = (motDePasse.value === motDePasseVerif.value);
+let passwordsMatch = false;
 bouton.disabled = true;
-const ok = 'V';
-const nok = 'X';
+const ok = '<img src="checked.png" alt="Ok" style="width:12px;height:12px;">';
+const nok = '<img src="cancel.png" alt="Nok" style="width:12px;height:12px;">';
+let element = '';
+let fonction = '';
+
+/*VALIDATION DU FORMULAIRE ENTIER -> BOUTON CLIQUABLE*/
 
 function doShowButton() {
-    if (doCheckEmail() && doCheckName() && doChekcPwd() && doMockupLogin() && doCheckAddress() && doCheckConditions()) {
+    if (doCheckEmail() && doCheckName() && doChekcPwd() && doMockupLogin() && doCheckAddress() && doCheckConditions() && doCheckLocality()) {
         bouton.disabled = false;
     } else {
         bouton.disabled = true;
     }
 }
 
+/*FONCTIONS DE VERIFICATION*/
+
 function doCheckEmail() {
-    /*if (regexmail.test(email.value) {document.getElementById("stateEmail").innerText = ok;}*/
     return regexmail.test(email.value);
 }
 
@@ -46,10 +51,61 @@ function doCheckAddress() {
     return regexadress.test(adresse.value);
 }
 
+function doCheckLocality() {
+    return localite.value !== null && localite.value !== 0;
+}
+
 function doCheckConditions () {
     return conditions.checked;
 }
 
 function doMockupLogin() {
+    passwordsMatch = (motDePasse.value === motDePasseVerif.value);
     return passwordsMatch;
+}
+
+/*FONCTIONS D'AFFICHAGE OK / NOK (ICONE)*/
+
+function doStateCheck() {
+    if (fonction) {
+        document.getElementById(element).innerHTML = ok;
+    } else {
+        document.getElementById(element).innerHTML = nok;
+    }
+}
+
+function doStateMailCheck() {
+    element = "stateEmail";
+    fonction = doCheckEmail();
+    doStateCheck();
+}
+
+function doStatePasswordCheck() {
+    element = "statePassword";
+    fonction = doChekcPwd();
+    doStateCheck();
+}
+
+function doStatePassword2Check() {
+    element = "statePassword2";
+    fonction = doMockupLogin();
+    doStateCheck();
+}
+
+function doStateNomPrenomCheck() {
+    element = "stateName";
+    fonction = doCheckName();
+    doStateCheck();
+}
+
+function doStateAddressCheck() {
+    element = "stateAddress";
+    fonction = doCheckAddress();
+    doStateCheck();
+}
+
+function doStateLocalityCheck() {
+    element = "stateLocality";
+    fonction = doCheckLocality();
+    doStateCheck();
 }
