@@ -22,6 +22,7 @@ const ok = '<img src="checked.png" alt="Ok" style="width:12px;height:12px;">';
 const nok = '<img src="cancel.png" alt="Nok" style="width:12px;height:12px;">';
 let element = '';
 let fonction = '';
+let localites = 'https://www.zeus2025.be/exe/localites.json';
 
 /*VALIDATION DU FORMULAIRE ENTIER -> BOUTON CLIQUABLE*/
 
@@ -52,7 +53,9 @@ function doCheckAddress() {
 }
 
 function doCheckLocality() {
-    return localite.value !== null && localite.value !== 0;
+    let selecteur = document.getElementById("local-dropdown");
+    let selection = selecteur.options[selecteur.selectedIndex].value;
+    return selection !== null && selection !== 0 && selection !== 'Choisissez votre localité dans la liste';
 }
 
 function doCheckConditions () {
@@ -108,4 +111,33 @@ function doStateLocalityCheck() {
     element = "stateLocality";
     fonction = doCheckLocality();
     doStateCheck();
+}
+
+/*JSON LOCALITES*/
+
+function readLocalities() {
+    let dropdown = document.getElementById('local-dropdown');
+    dropdown.length = 0;
+    let defaultOption = document.createElement('option');
+    defaultOption.text = 'Choisissez votre localité dans la liste';
+    dropdown.append(defaultOption);
+    dropdown.selectedIndex = 0;
+    const xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 200) {
+            const data = JSON.parse(this.responseText);
+            //console.log(data);
+            //console.log(data.localites.length);
+            let option;
+            for (let i = 0; i < data.localites.length; i++) {
+                option = document.createElement('option');
+                option.innerText = data.localites[i].cp + ' ' + data.localites[i].ville;
+                option.value = option.innerText;
+                option.setAttribute("id", "local-option");
+                dropdown.append(option);
+            }
+        };
+    }
+    xmlhttp.open("GET", localites, true);
+    xmlhttp.send();
 }

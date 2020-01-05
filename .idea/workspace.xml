@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9393d151-835e-4c54-8566-eb57d6c8534c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/cancel.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/checked.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/eshop.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/login.js" afterDir="false" />
@@ -37,7 +34,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../DemoJavascript" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../EcoleDevWeb" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="settings.editor.selected.configurable" value="File.Encoding" />
   </component>
@@ -65,7 +62,7 @@
       <updated>1578139283803</updated>
       <workItem from="1578139287190" duration="150000" />
       <workItem from="1578139472286" duration="7052000" />
-      <workItem from="1578227970393" duration="2612000" />
+      <workItem from="1578227970393" duration="8777000" />
     </task>
     <servers />
   </component>

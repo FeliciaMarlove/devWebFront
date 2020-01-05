@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<body>
+<body onload="readLocalities()">
 
 <form action="" id="formulaire" oninput="doShowButton()">
     <p>
@@ -42,13 +42,8 @@
         </select>
     </p>
     <p>
-        <!--lecture fichier JSON-->
-        <label for="local">Localité *</label>
-        <select id="local" required oninput="doStateLocalityCheck()">
-            <!--MOCKUP-->
-            <option value="mons">Mons</option>
-            <option value="prout">prout</option>
-            <!--MOCKUP-->
+        <label for="local-dropdown">Localité *</label>
+        <select id="local-dropdown" name="localite" required oninput="doStateLocalityCheck()">
         </select>
         <bdi id="stateLocality"></bdi>
     </p>
