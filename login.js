@@ -17,20 +17,48 @@ let regexadress = /^[a-z0-9àáâãäåçèéêëìíîïðòóôõöùúûüý�
 /*seulement des lettres, des chiffres et espace, - et / autorisés ; i = case insensitive*/
 let bouton = document.getElementById("send");
 let passwordsMatch = false;
-bouton.disabled = true;
 const ok = '<img src="checked.png" alt="Ok" style="width:12px;height:12px;">';
 const nok = '<img src="cancel.png" alt="Nok" style="width:12px;height:12px;">';
 let element = '';
 let fonction = '';
 let localites = 'https://www.zeus2025.be/exe/localites.json';
+let defautChoixLocalite = 'Choisissez votre localité dans la liste';
 
 /*VALIDATION DU FORMULAIRE ENTIER -> BOUTON CLIQUABLE*/
 
-function doShowButton() {
-    if (doCheckEmail() && doCheckName() && doChekcPwd() && doMockupLogin() && doCheckAddress() && doCheckConditions() && doCheckLocality()) {
-        bouton.disabled = false;
+function doValidateForm() {
+    let allTips = document.getElementsByClassName("tip");
+    for (let i = 0; i < allTips.length; i++) {
+        allTips.item(i).innerHTML = '';
+    }
+    if (doCheckEmail() && doCheckName() && doCheckPwd() && doMockupLogin() && doCheckAddress() && doCheckConditions() && doCheckLocality()) {
+        location.href='eshop.html';
     } else {
-        bouton.disabled = true;
+        showMistakes();
+    }
+}
+
+function showMistakes() {
+    if (!doCheckEmail()) {
+        document.getElementById('tip-email').innerHTML = 'Veuillez entrer une adresse e-mail correcte';
+    }
+    if (!doCheckName()) {
+        document.getElementById('tip-nom').innerHTML = 'Veuillez entrer votre nom et prénom séparés par un espace';
+    }
+    if (!doCheckPwd()) {
+        document.getElementById('tip-pwd').innerHTML = 'Le mot de passe doit contenir au moins 8 caractères dont 1 minuscule, 1 majuscule, 1 caractère spécial et 1 chiffre';
+    }
+    if (!doCheckLocality()) {
+        document.getElementById('tip-localite').innerHTML = 'Veuillez choisir votre localité';
+    }
+    if (!doCheckConditions()) {
+        document.getElementById('tip-conditions').innerHTML = 'Vous devez accepter les conditions pour vous inscrire';
+    }
+    if (!doCheckAddress()) {
+        document.getElementById('tip-adresse').innerHTML = 'Veuillez entrer votre adresse';
+    }
+    if (!doMockupLogin()) {
+        document.getElementById('tip-pwd2').innerHTML = 'Le mot de passe doit être identique';
     }
 }
 
@@ -44,7 +72,7 @@ function doCheckName() {
     return regexnom.test(nom.value);
 }
 
-function doChekcPwd() {
+function doCheckPwd() {
     return regexpwd.test(motDePasse.value);
 }
 
@@ -55,7 +83,7 @@ function doCheckAddress() {
 function doCheckLocality() {
     let selecteur = document.getElementById("local-dropdown");
     let selection = selecteur.options[selecteur.selectedIndex].value;
-    return selection !== null && selection !== 0 && selection !== 'Choisissez votre localité dans la liste';
+    return selection !== null && selection !== 0 && selection !== defautChoixLocalite;
 }
 
 function doCheckConditions () {
@@ -67,9 +95,9 @@ function doMockupLogin() {
     return passwordsMatch;
 }
 
-/*FONCTIONS D'AFFICHAGE OK / NOK (ICONE)*/
+/*FONCTIONS D'AFFICHAGE OK / NOK (ICONES)*/
 
-function doStateCheck() {
+function doStateCheck(fonction, element) {
     if (fonction) {
         document.getElementById(element).innerHTML = ok;
     } else {
@@ -78,39 +106,27 @@ function doStateCheck() {
 }
 
 function doStateMailCheck() {
-    element = "stateEmail";
-    fonction = doCheckEmail();
-    doStateCheck();
+    doStateCheck(doCheckEmail(), "stateEmail");
 }
 
 function doStatePasswordCheck() {
-    element = "statePassword";
-    fonction = doChekcPwd();
-    doStateCheck();
+    doStateCheck(doCheckPwd(), "statePassword");
 }
 
 function doStatePassword2Check() {
-    element = "statePassword2";
-    fonction = doMockupLogin();
-    doStateCheck();
+    doStateCheck(doMockupLogin(), "statePassword2");
 }
 
 function doStateNomPrenomCheck() {
-    element = "stateName";
-    fonction = doCheckName();
-    doStateCheck();
+    doStateCheck(doCheckName(), "stateName");
 }
 
 function doStateAddressCheck() {
-    element = "stateAddress";
-    fonction = doCheckAddress();
-    doStateCheck();
+    doStateCheck(doCheckAddress(), "stateAddress");
 }
 
 function doStateLocalityCheck() {
-    element = "stateLocality";
-    fonction = doCheckLocality();
-    doStateCheck();
+    doStateCheck(doCheckLocality(), "stateLocality");
 }
 
 /*JSON LOCALITES*/
@@ -119,7 +135,7 @@ function readLocalities() {
     let dropdown = document.getElementById('local-dropdown');
     dropdown.length = 0;
     let defaultOption = document.createElement('option');
-    defaultOption.text = 'Choisissez votre localité dans la liste';
+    defaultOption.text = defautChoixLocalite;
     dropdown.append(defaultOption);
     dropdown.selectedIndex = 0;
     const xmlhttp = new XMLHttpRequest();
