@@ -11,7 +11,11 @@ body {
     opacity: 92%;
 }
 
-.container {
+.articles {
+    background-color: white;
+}
+
+body {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
@@ -53,7 +57,7 @@ h2 {
 }
 
 @media (max-width: 640px) {
-    .container {
+    body {
         grid-template-rows: 0.5fr 0.5fr 1fr 1fr 1fr 1fr 1fr;
         grid-template-columns: 4fr;
         grid-template-areas:

@@ -19,9 +19,7 @@ let bouton = document.getElementById("send");
 let passwordsMatch = false;
 const ok = '<img src="checked.png" alt="Ok" style="width:12px;height:12px;">';
 const nok = '<img src="cancel.png" alt="Nok" style="width:12px;height:12px;">';
-let element = '';
-let fonction = '';
-let localites = 'https://www.zeus2025.be/exe/localites.json';
+const localites = 'https://www.zeus2025.be/exe/localites.json';
 let defautChoixLocalite = 'Choisissez votre localité dans la liste';
 
 /*VALIDATION DU FORMULAIRE ENTIER -> BOUTON CLIQUABLE*/
