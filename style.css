@@ -12,7 +12,12 @@ body {
 }
 
 .articles {
+    border-spacing: 10px;
+}
+
+.article {
     background-color: white;
+    text-align: center;
 }
 
 body {

@@ -15,7 +15,7 @@ let regexmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@(
 let regexpwd = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/; /*au moins 1 minuscule, 1 majuscule, 1 chifre, 1 caractère spécial, longueur de 8*/
 let regexadress = /^[a-z0-9àáâãäåçèéêëìíîïðòóôõöùúûüýÿ\s\-\/]+$/i;
 /*seulement des lettres, des chiffres et espace, - et / autorisés ; i = case insensitive*/
-let bouton = document.getElementById("send");
+//let bouton = document.getElementById("send");
 let passwordsMatch = false;
 const ok = '<img src="checked.png" alt="Ok" style="width:12px;height:12px;">';
 const nok = '<img src="cancel.png" alt="Nok" style="width:12px;height:12px;">';

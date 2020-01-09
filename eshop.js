@@ -13,47 +13,31 @@ function readBoules() {
     let collectionOfArticles = document.getElementById('articles');
     collectionOfArticles.length = 0;
     collectionOfArticles.selectedIndex = 0;
+    let row;
     let oneBall;
     for (let i = 0; i < countArticles; i++) {
-        oneBall = document.createElement('li');
-        itemId = xmlDoc.getElementsByTagName("id")[i].childNodes[0].nodeValue;
+        oneBall = document.createElement('td');
+        oneBall.setAttribute("class", "article");
+        let itemId = document.createElement('p');
+        itemId.setAttribute("class", "idBoule");
+        itemId.innerText = xmlDoc.getElementsByTagName("id")[i].childNodes[0].nodeValue;
+        let itemLib = document.createElement('p');
+        itemLib.setAttribute("class", "libBoule");
         itemLib = xmlDoc.getElementsByTagName("lib")[i].childNodes[0].nodeValue;
+        let itemPrix = document.createElement('p');
+        itemPrix.setAttribute("class", "prixBoule");
         itemPrix = xmlDoc.getElementsByTagName("prix")[i].childNodes[0].nodeValue;
+        let itemStock = document.createElement('p');
+        itemStock.setAttribute("class", "libStock");
         itemStock = xmlDoc.getElementsByTagName("stock")[i].childNodes[0].nodeValue;
-        itemImage = xmlDoc.getElementsByTagName("image")[i].childNodes[0].nodeValue;
-        oneBall.value = {
-            itemId,
-            itemLib,
-            itemPrix,
-            itemStock,
-            itemImage
-        }
+        let itemImage = document.createElement('img');
+        itemImage.setAttribute("class", "imageBoule");
+        itemImage.src = xmlDoc.getElementsByTagName("image")[i].childNodes[0].nodeValue;
+        oneBall.append(itemImage);
+        oneBall.append(itemLib);
+        oneBall.append("\r" + itemPrix + " €");
+        oneBall.append("\r" + itemStock + " pièces en stock");
         collectionOfArticles.append(oneBall);
     }
 }
-
-/*function readLocalities() {
-    dropdown.append(defaultOption);
-    dropdown.selectedIndex = 0;
-    const xmlhttp = new XMLHttpRequest();
-    xmlhttp.onreadystatechange = function () {
-        if (this.readyState === 4 && this.status === 200) {
-            const data = JSON.parse(this.responseText);
-            //console.log(data);
-            //console.log(data.localites.length);
-            let option;
-            for (let i = 0; i < data.localites.length; i++) {
-                option = document.createElement('option');
-                option.innerText = data.localites[i].cp + ' ' + data.localites[i].ville;
-                option.value = option.innerText;
-                option.setAttribute("id", "local-option");
-                dropdown.append(option);
-            }
-        };
-    }
-    xmlhttp.open("GET", localites, true);
-    xmlhttp.send();
-}*/
-
-
 
