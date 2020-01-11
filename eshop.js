@@ -44,8 +44,9 @@ function domCreate () {
         boule.append(itemPrix + " €");
         boule.append(itemStock + " pièces en stock");
         boule.append(ajouter);
+        collectionOfArticles.append(boule);
     }
-    collectionOfArticles.append(boule);
+
     console.log(collectionOfArticles);
 }
 
