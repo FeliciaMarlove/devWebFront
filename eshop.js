@@ -1,13 +1,20 @@
 const boules = 'https://www.zeus2025.be/exe/boutique.xml';
 let cart = 0;
+let somme = 0;
 let balls = [];
 let collectionOfArticles;
 
 function addToCart(index) {
     let currentBall = document.getElementById("ball"+index);
     currentBall.childNodes[4].nodeValue -= 1;
+    cart += 1;
+    let prix = Number.parseFloat(currentBall.childNodes[2].nodeValue);
+    somme += prix;
+    let cartTotal = document.getElementById("cartTotal");
+    cartTotal.innerText = cart;
+    let cartSomme = document.getElementById("cartSomme");
+    cartSomme.innerText = somme;
 }
-
 
 function domCreate () {
     readBoules();
