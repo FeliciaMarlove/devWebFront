@@ -3,51 +3,69 @@ let cart = 0;
 let somme = 0;
 let balls = [];
 let collectionOfArticles;
-let ajouter;
+let ajouter;;
 
 function addToCart(index) {
-    let currentBall = document.getElementById("ball"+index);
-    currentBall.childNodes[4].nodeValue -= 1;
+    let currentBall = document.getElementById("ball" + index);
+    let prix = Number.parseFloat(currentBall.querySelector(".prixBoule").textContent);
+    let stock = Number.parseInt(-- currentBall.querySelector(".stockBoule").textContent);
+    console.log(stock);
     cart += 1;
-    let prix = Number.parseFloat(currentBall.childNodes[2].nodeValue);
     somme += prix;
     let cartTotal = document.getElementById("cartTotal");
     cartTotal.innerText = cart;
     let cartSomme = document.getElementById("cartSomme");
     cartSomme.innerText = somme;
-    if (Number.parseFloat(currentBall.childNodes[4].nodeValue) === 0) {
-        currentBall.childNodes[6].disabled = true;
-        currentBall.childNodes[6].textContent = "Article non disponible"
+    if (stock === 0) {
+        currentBall.querySelector(".boutonAjout").disabled = true;
+        currentBall.querySelector(".boutonAjout").textContent = "Article non disponible";
     }
 }
 
 function domCreate () {
     readBoules();
+    //console.log(balls);
     collectionOfArticles = document.getElementById('articles');
-    collectionOfArticles.length = 0;
-    collectionOfArticles.selectedIndex = 0;
+/*    collectionOfArticles.length = 0;
+    collectionOfArticles.selectedIndex = 0;*/
     let boule;
     for (let i = 0; i < balls.length; i++) {
         boule = document.createElement('div');
         boule.setAttribute("class", "article");
-        boule.setAttribute("id", "ball" + i)
+        boule.setAttribute("id", "ball" + i);
+        collectionOfArticles.append(boule);
+
         let itemId = document.createElement('p');
         itemId.setAttribute("class", "idBoule");
-        itemId = balls[i].id;
+        itemId.setAttribute("hidden", "true");
         let itemLib = document.createElement('p');
         itemLib.setAttribute("class", "libBoule");
-        itemLib = balls[i].lib;
         let itemPrix = document.createElement('p');
         itemPrix.setAttribute("class", "prixBoule");
-        itemPrix = balls[i].prix;
         let itemStock = document.createElement('p');
-        itemStock.setAttribute("class", "libStock");
-        itemStock = balls[i].stock;
+        itemStock.setAttribute("class", "stockBoule");
+        itemStock.setAttribute("hidden", "true");
         let itemImage = document.createElement('img');
         itemImage.setAttribute("class", "imageBoule");
-        itemImage.src = balls[i].image;
         ajouter = document.createElement('button');
-        if (itemStock > 0) {
+        ajouter.setAttribute("class","boutonAjout");
+
+        boule.append(itemId);
+        boule.append(itemLib);
+        boule.append("Bla bla bla bla Bla bla bla bla")
+        boule.append(itemPrix);
+        boule.append(" €");
+        boule.append(itemStock);
+        boule.append(itemImage);
+        boule.append(ajouter);
+
+        itemLib.innerHTML = balls[i].lib;
+        itemPrix.innerHTML = balls[i].prix;
+        itemId.innerHTML = balls[i].idd;
+        itemStock.innerHTML = balls[i].stock;
+        itemImage.src = balls[i].image;
+
+        if (itemStock.innerText > 0) {
             ajouter.disabled = false;
             ajouter.onclick = function() { addToCart(i); };
             ajouter.textContent = "Ajouter au panier";
@@ -55,17 +73,9 @@ function domCreate () {
             ajouter.disabled = true;
             ajouter.textContent = "Article non disponible";
         }
-        boule.append(itemImage);
-        boule.append(itemLib);
-        boule.append(itemPrix);
-        boule.append(" €");
-        boule.append(itemStock);
-        boule.append(" pièces en stock")
-        boule.append(ajouter);
-        collectionOfArticles.append(boule);
     }
-    console.log('collection d\'articles');
-    console.log(collectionOfArticles);
+    //console.log(boule.childNodes)
+    //console.log(collectionOfArticles.childNodes);
 }
 
 function readBoules() {
