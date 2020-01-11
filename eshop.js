@@ -3,6 +3,7 @@ let cart = 0;
 let somme = 0;
 let balls = [];
 let collectionOfArticles;
+let ajouter;
 
 function addToCart(index) {
     let currentBall = document.getElementById("ball"+index);
@@ -14,6 +15,10 @@ function addToCart(index) {
     cartTotal.innerText = cart;
     let cartSomme = document.getElementById("cartSomme");
     cartSomme.innerText = somme;
+    if (Number.parseFloat(currentBall.childNodes[4].nodeValue) === 0) {
+        currentBall.childNodes[6].disabled = true;
+        currentBall.childNodes[6].textContent = "Article non disponible"
+    }
 }
 
 function domCreate () {
@@ -41,7 +46,7 @@ function domCreate () {
         let itemImage = document.createElement('img');
         itemImage.setAttribute("class", "imageBoule");
         itemImage.src = balls[i].image;
-        let ajouter = document.createElement('button');
+        ajouter = document.createElement('button');
         if (itemStock > 0) {
             ajouter.disabled = false;
             ajouter.onclick = function() { addToCart(i); };
