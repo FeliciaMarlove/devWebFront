@@ -6,11 +6,13 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>E-shop de boules de Noël</title>
 </head>
-<body onload="readBoules()">
-<div class="tableContainer">
-    <table id="articles" class="articles"> </table>
-
-</div>
+<body onload="domCreate()" class="bodyShop">
+    <div class="topShop">
+        <img src="./shopping-cart.png" height="50px" width="50px" align="right" id="cartIcon">
+    </div>
+    <div class="tableContainer">
+        <div id="articles" class="articles"> </div>
+    </div>
 </body>
 <script src="eshop.js"></script>
 </html>
