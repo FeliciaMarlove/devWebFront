@@ -50,20 +50,19 @@ function domCreate () {
         ajouter = document.createElement('button');
         ajouter.setAttribute("class","boutonAjout");
 
+        boule.append(itemImage);
         boule.append(itemId);
         boule.append(itemLib);
-        boule.append("Bla bla bla bla Bla bla bla bla")
+        boule.append("Bla bla bla bla Bla bla bla bla");
         boule.append(itemPrix);
-        boule.append(" €");
         boule.append(itemStock);
-        boule.append(itemImage);
         boule.append(ajouter);
 
+        itemImage.src = balls[i].image;
         itemLib.innerHTML = balls[i].lib;
         itemPrix.innerHTML = balls[i].prix;
         itemId.innerHTML = balls[i].idd;
         itemStock.innerHTML = balls[i].stock;
-        itemImage.src = balls[i].image;
 
         if (itemStock.innerText > 0) {
             ajouter.disabled = false;
@@ -74,8 +73,8 @@ function domCreate () {
             ajouter.textContent = "Article non disponible";
         }
     }
-    //console.log(boule.childNodes)
-    //console.log(collectionOfArticles.childNodes);
+    let champsPrix = document.querySelectorAll(".prixBoule");
+    champsPrix.forEach( x => x.innerHTML += " €");
 }
 
 function readBoules() {

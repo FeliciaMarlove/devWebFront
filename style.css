@@ -7,19 +7,44 @@
 }
 
 .tableContainer {
+    grid-area: tc;
 }
 
 .topShop {
+    grid-area: ts;
+    display: grid;
+    grid-template-columns: 2fr 2fr 0.5fr 1fr 0.5fr;
+    grid-template-areas:
+        " . . i t .";
+}
+
+#cartIcon {
+    grid-area: i;
+}
+
+#cartText {
+    grid-area: t;
+    font-weight: bold;
 }
 
 .articles {
-    border-spacing: 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    /*justify-content: space-evenly;
+    align-content: space-around;*/
+    justify-content: center;
+    align-content: center;
+    grid-area: tc;
 }
 
 .article {
     flex-shrink: 1;
     background-color: white;
     text-align: center;
+    border-style: solid;
+    border-color: #1b1e21;
+    padding: 10px;
 }
 
 .bodyHome {
@@ -35,8 +60,15 @@
             " . . . . ";
 }
 
+.empty {
+    grid-area: e;
+}
+
 .bodyShop {
-    display: flex;
+    display: grid;
+    grid-template-areas:
+        " ts ts ts"
+        " tc tc tc";
 }
 
 body {
@@ -44,8 +76,7 @@ body {
     font-size: 14px;
     /*background-image: url("ball.jpg");
      background-size: cover;*/
-    background-color: darkred;
-
+    background-color: brown;
 }
 
 button {
@@ -97,5 +128,10 @@ h2 {
     }
     h2 {
         font-size: 26px;
+    }
+    .topShop {
+        grid-template-columns: 0.5fr 0.5fr 0.5fr 2fr 1fr;
+        grid-template-areas:
+                " . . i t .";
     }
 }
