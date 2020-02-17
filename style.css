@@ -45,6 +45,7 @@
     border-style: solid;
     border-color: #1b1e21;
     padding: 10px;
+    margin: 8px
 }
 
 .bodyHome {
@@ -132,5 +133,10 @@ h2 {
         grid-template-columns: 0.5fr 0.5fr 0.5fr 2fr 1fr;
         grid-template-areas:
                 " . . i t .";
+    }
+    .article {
+        margin: 0px;
+        transform: scale(0.7, 0.7);
+        padding: 0px;
     }
 }

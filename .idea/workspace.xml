@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9393d151-835e-4c54-8566-eb57d6c8534c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/style.css" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -32,7 +34,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Lotto_Greg" />
+    <property name="last_opened_file_path" value="S:/Téléchargements/IdeaProjects/IdeaProjects" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="settings.editor.selected.configurable" value="File.Encoding" />
   </component>
@@ -65,7 +67,10 @@
       <workItem from="1578505356302" duration="5583000" />
       <workItem from="1578586354748" duration="5683000" />
       <workItem from="1578748901139" duration="15627000" />
-      <workItem from="1578819823228" duration="3742000" />
+      <workItem from="1578819823228" duration="3897000" />
+      <workItem from="1579113818884" duration="770000" />
+      <workItem from="1579194913845" duration="3118000" />
+      <workItem from="1579357722902" duration="20000" />
     </task>
     <servers />
   </component>
